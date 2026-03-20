@@ -1,0 +1,36 @@
+name: Node.js CI Pipeline
+
+# 1. WHEN SHOULD THIS RUN?
+on:
+  push:
+    branches: [ "main" ] # Runs every time you push to the main branch
+  pull_request:
+    branches: [ "main" ]
+
+# 2. WHAT SHOULD IT DO?
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest # GitHub gives you a temporary Linux computer
+
+    steps:
+    # Gets your code from the repository
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    # Installs Node.js on the temporary computer
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+        
+    # Goes into your backend folder and installs packages
+    - name: Install Backend Dependencies
+      run: cd backend && npm install
+      
+    # Goes into your frontend folder and installs packages
+    - name: Install Frontend Dependencies
+      run: cd frontend && npm install
+      
+    # Attempts to build the frontend to ensure no errors exist in the React code
+    - name: Build Frontend
+      run: cd frontend && npm run build

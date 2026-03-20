@@ -1,0 +1,29 @@
+# =========================
+# Node.js & Backend
+# =========================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# =========================
+# Vite & Frontend Build
+# =========================
+dist/
+dist-ssr/
+*.local
+
+# =========================
+# Environment Variables (CRITICAL)
+# =========================
+.env
+.env.*
+!.env.example
+
+# =========================
+# Editor & OS Files
+# =========================
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
