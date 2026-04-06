@@ -9,5 +9,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs"
+  "type": "commonjs",
+  "dependencies": {
+    "@prisma/adapter-pg": "^7.6.0",
+    "pg": "^8.20.0"
+  }
 }

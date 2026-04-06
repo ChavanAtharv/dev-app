@@ -4,15 +4,18 @@ const path = require('path');
 const cors = require('cors');
 const http = require('http');
 const { Server } = require('socket.io');
-const { PrismaClient } = require('@prisma/client');
 
-const prisma = new PrismaClient({
-  datasources: {
-    db: {
-      url: process.env.DATABASE_URL,
-    },
-  },
-});
+// ─── PRISMA V7 DATABASE CONNECTION ───────────────────────────────
+const { PrismaClient } = require('@prisma/client');
+const { Pool } = require('pg');
+const { PrismaPg } = require('@prisma/adapter-pg');
+
+const connectionString = process.env.DATABASE_URL;
+const pool = new Pool({ connectionString });
+const adapter = new PrismaPg(pool);
+const prisma = new PrismaClient({ adapter });
+// ─────────────────────────────────────────────────────────────────
+
 const app = express();
 const server = http.createServer(app);
 
